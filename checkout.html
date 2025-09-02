@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang='en' class=''>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:300,400,500,600,700&display=swap" rel="stylesheet">
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>Urban Threads - Checkout</title>
+  <script src='https://cdn.tailwindcss.com'></script>
+</head>
+<body style="font-family: 'Inter', sans-serif;" class='bg-gray-50 text-gray-900'>
+  <!-- Header -->
+  <header class='bg-white/90 backdrop-blur-md border-b border-gray-200 fixed w-full z-40 top-0 left-0'>
+    <div class='max-w-7xl mx-auto px-4 py-4 flex items-center justify-between'>
+      <div class='flex items-center gap-2'>
+        <span class='w-9 h-9 inline-flex items-center justify-center rounded-full bg-black text-white'>
+          <svg width='20' height='20' viewBox='0 0 24 24' fill='currentColor' aria-label='Urban Threads Logo'>
+            <path d='M7 3h10a1 1 0 0 1 1 1v3h-2V5H8v14h6v2H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z' opacity='.9'/>
+            <path d='M5 9h14v2H5zM9 13h6v2H9zM9 17h6v2H9z'/>
+          </svg>
+        </span>
+        <span class='font-bold text-xl tracking-tight'>Urban Threads</span>
+      </div>
+      <nav class='hidden md:flex space-x-6'>
+        <a href='index.html' class='text-gray-700 hover:text-black'>Home</a>
+        <a href='shop.html' class='text-gray-700 hover:text-black'>Shop</a>
+        <a href='about.html' class='text-gray-700 hover:text-black'>About</a>
+        <a href='contact.html' class='text-gray-700 hover:text-black'>Contact</a>
+      </nav>
+      <div class='flex items-center space-x-3'>
+        <a href='cart.html' aria-label='Open cart' class='flex items-center gap-2 px-4 py-2 rounded-full bg-gray-900 text-white'>
+          Cart
+          <span id='cart-count-header' class='bg-white text-gray-900 px-2 py-0.5 rounded-full text-sm'>0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+  <main class='pt-28'>
+    <section class='max-w-5xl mx-auto px-4'>
+      <h1 class='text-3xl font-bold mb-6'>Checkout</h1>
+      <div id='checkout-details' class='grid grid-cols-1 md:grid-cols-2 gap-8'>
+        <div class='bg-white border border-gray-200 rounded-lg p-6'>
+          <h2 class='font-semibold mb-3'>Order Summary</h2>
+          <div id='order-items' class='space-y-2 text-sm text-gray-700'>
+            <!-- Items populated by cart.js -->
+          </div>
+          <div class='mt-4 border-t pt-4'>
+            <div class='flex justify-between mb-2'>
+              <span>Subtotal</span><span id='subtotal'>₹0</span>
+            </div>
+            <div class='flex justify-between'>
+              <span>Shipping</span><span>Free</span>
+            </div>
+          </div>
+          <div class='mt-4 flex justify-between items-center'>
+            <span class='font-bold text-lg' id='grand-total'>₹0</span>
+            <a href='shop.html' class='text-sm text-blue-600 hover:underline'>Continue Shopping</a>
+          </div>
+        </div>
+        <div class='bg-white border border-gray-200 rounded-lg p-6'>
+          <h2 class='font-semibold mb-3'>Payment Information</h2>
+          <form id='checkout-form' class='space-y-4' onsubmit='return false;'>
+            <div>
+              <label class='block text-sm mb-1'>Full Name</label>
+              <input required class='w-full border border-gray-300 rounded px-3 py-2' type='text' id='name'>
+            </div>
+            <div>
+              <label class='block text-sm mb-1'>Email</label>
+              <input required class='w-full border border-gray-300 rounded px-3 py-2' type='email' id='email'>
+            </div>
+            <div>
+              <label class='block text-sm mb-1'>Address</label>
+              <input required class='w-full border border-gray-300 rounded px-3 py-2' type='text' id='address'>
+            </div>
+            <button id='pay-btn' class='w-full py-3 rounded-md bg-blue-600 text-white hover:bg-blue-700'>Pay with PayPal Sandbox</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- PayPal Sandbox Modal (mock) -->
+  <div id='paypal-modal' class='hidden fixed inset-0 bg-black/50 flex items-center justify-center'>
+    <div class='bg-white rounded-lg p-6 w-96'>
+      <h3 class='text-lg font-bold mb-2'>PayPal Sandbox</h3>
+      <p class='text-sm text-gray-700 mb-4'>This is a mock PayPal sandbox payment flow for demonstration purposes.</p>
+      <div class='flex justify-end'>
+        <button id='modal-close' class='px-4 py-2 rounded bg-gray-200'>Close</button>
+        <button id='modal-pay' class='ml-2 px-4 py-2 rounded bg-blue-600 text-white'>Simulate Pay</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class='bg-gray-800 text-gray-200 mt-8'>
+    <div class='max-w-7xl mx-auto px-4 py-8'>
+      <p class='text-sm'>© 2025 Urban Threads - Hyderabad, India</p>
+    </div>
+  </footer>
+
+  <script>
+    // Sync cart across pages
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+
+    function renderOrderItems() {
+      const list = document.getElementById('order-items');
+      list.innerHTML = '';
+      if (!cart.length) {
+        list.innerHTML = '<div class="text-sm text-gray-600">Your cart is empty.</div>';
+        updateTotals();
+        return;
+      }
+      let subtotal = 0;
+      cart.forEach(item => {
+        const line = document.createElement('div');
+        const total = item.price * item.quantity;
+        subtotal += total;
+        line.className = 'flex justify-between';
+        line.innerHTML = `<span>${item.name} × ${item.quantity}</span><span>₹${total.toLocaleString()}</span>`;
+        list.appendChild(line);
+      });
+      updateTotals(subtotal);
+    }
+
+    function updateTotals(subtotal=null) {
+      // compute if not passed
+      if (subtotal === null) {
+        subtotal = cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
+      }
+      const subEl = document.getElementById('subtotal');
+      const grandEl = document.getElementById('grand-total');
+      subEl.textContent = `₹${subtotal.toLocaleString()}`;
+      grandEl.textContent = `₹${subtotal.toLocaleString()}`;
+    }
+
+    function init() {
+      renderOrderItems();
+      const form = document.getElementById('checkout-form');
+      const payBtn = document.getElementById('pay-btn');
+      const modal = document.getElementById('paypal-modal');
+      const modalClose = document.getElementById('modal-close');
+      const modalPay = document.getElementById('modal-pay');
+      const nameInput = document.getElementById('name');
+      const emailInput = document.getElementById('email');
+      const addressInput = document.getElementById('address');
+
+      payBtn.addEventListener('click', () => {
+        // Basic validation
+        if (!nameInput.value || !emailInput.value || !addressInput.value) {
+          alert('Please fill in all required fields.');
+          return;
+        }
+        modal.style.display = 'flex';
+        modal.className = 'fixed inset-0 bg-black/50 flex items-center justify-center';
+      });
+
+      modalClose.addEventListener('click', () => { modal.style.display = 'none'; modal.className = 'hidden'; });
+      modalPay.addEventListener('click', () => {
+        // Mock success: clear cart and show a success message
+        cart = [];
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderOrderItems();
+        modal.style.display = 'none';
+        modal.className = 'hidden';
+        alert('Payment successful. Thank you for your order!');
+      });
+
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+
+  </script>
+</body>
+</html>
