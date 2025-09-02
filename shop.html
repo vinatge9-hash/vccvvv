@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang='en' class=''>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:300,400,500,600,700&display=swap" rel="stylesheet">
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>Urban Threads - Shop</title>
+  <script src='https://cdn.tailwindcss.com'></script>
+</head>
+<body style="font-family: 'Inter', sans-serif;" class='bg-gray-50 text-gray-900'>
+  <!-- Header (consistent across pages) -->
+  <header class='bg-white/90 backdrop-blur-md border-b border-gray-200 fixed w-full z-40 top-0 left-0'>
+    <div class='max-w-7xl mx-auto px-4 py-4 flex items-center justify-between'>
+      <div class='flex items-center gap-2'>
+        <span class='w-9 h-9 inline-flex items-center justify-center rounded-full bg-black text-white'>
+          <svg width='20' height='20' viewBox='0 0 24 24' fill='currentColor' aria-label='Urban Threads Logo'>
+            <path d='M7 3h10a1 1 0 0 1 1 1v3h-2V5H8v14h6v2H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z' opacity='.9'/>
+            <path d='M5 9h14v2H5zM9 13h6v2H9zM9 17h6v2H9z'/>
+          </svg>
+        </span>
+        <span class='font-bold text-xl tracking-tight'>Urban Threads</span>
+      </div>
+      <nav class='hidden md:flex space-x-6'>
+        <a href='index.html' class='text-gray-700 hover:text-black'>Home</a>
+        <a href='shop.html' class='text-gray-700 hover:text-black'>Shop</a>
+        <a href='about.html' class='text-gray-700 hover:text-black'>About</a>
+        <a href='contact.html' class='text-gray-700 hover:text-black'>Contact</a>
+      </nav>
+      <div class='flex items-center space-x-3'>
+        <a href='cart.html' aria-label='Open cart' class='flex items-center gap-2 px-4 py-2 rounded-full bg-gray-900 text-white hover:bg-black'>
+          <span>Cart</span>
+          <span id='cart-count-header' class='bg-white text-gray-900 px-2 py-0.5 rounded-full text-sm'>0</span>
+        </a>
+        <button id='hamburger' aria-label='Open mobile menu' class='md:hidden p-2 rounded-md bg-gray-100'>
+          <svg id='hamburger-icon' xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 6h16M4 12h16M4 18h16'/>
+          </svg>
+          <svg id='close-icon' xmlns='http://www.w3.org/2000/svg' class='h-5 w-5 hidden' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 18L18 6M6 6l12 12'/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div id='mobile-menu' class='md:hidden hidden px-4 pb-4'>
+      <a href='index.html' class='block py-2'>Home</a>
+      <a href='shop.html' class='block py-2'>Shop</a>
+      <a href='about.html' class='block py-2'>About</a>
+      <a href='contact.html' class='block py-2'>Contact</a>
+    </div>
+  </header>
+  <main class='pt-28'>
+    <section class='max-w-7xl mx-auto px-4'>
+      <h1 class='text-3xl font-bold mb-4'>Shop Urban Threads</h1>
+      <p class='mb-6 text-gray-700'>Explore our curated collection of minimalist, premium clothing designed for the modern urban lifestyle. Each product prioritizes fit, fabric, and finish to deliver a timeless wardrobe you can rely on every day in Hyderabad and beyond.</p>
+      <div class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
+        <!-- Product 1 -->
+        <article class='group bg-white border border-gray-200 rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow'>
+          <img src="https://images.unsplash.com/photo-1662464646835-ecee3ae43570?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODkyNDZ8MHwxfHNlYXJjaHw3fHxDbGFzc2ljJTIwV2hpdGUlMjBUZWV8ZW58MHwwfHx8MTc1NjgzNTE5Nnww&ixlib=rb-4.1.0&q=80&w=1080" alt='Classic White Tee' class='w-full h-48 object-cover'>
+          <div class='p-4'>
+            <h3 class='font-semibold text-lg'>Classic White Tee</h3>
+            <p class='text-gray-600'>₹1,299</p>
+            <button onclick="addToCart(101, 'Classic White Tee', 1299, ' https://pixabay.com/get/gb72d48835a0909cd100b4e209d9a46e4eff598e27c7674d4084037c9db717b3454eb6faf22adf7197acf0398c4ec70ae8a589d4adef45bf0df58c91232f20088_640.jpg ' )" class='mt-3 w-full py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700'>Add to Cart</button>
+          </div>
+        </article>
+        <!-- Product 2 -->
+        <article class='group bg-white border border-gray-200 rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow'>
+          <img src="https://pixabay.com/get/g59b27047c4b3c76d76a7932a36bac51d029b00d0c26137718199489dfb730db60d9147ad477480ea2f305da7b662948d4ea65cbc743630d2b413652429bca3fe_640.jpg" alt='Denim Jacket' class='w-full h-48 object-cover'>
+          <div class='p-4'>
+            <h3 class='font-semibold text-lg'>Denim Jacket</h3>
+            <p class='text-gray-600'>₹3,999</p>
+            <button onclick="addToCart(102, 'Denim Jacket', 3999, ' https://images.pexels.com/photos/33652496/pexels-photo-33652496.jpeg?auto=compress&cs=tinysrgb&h=650&w=940 ' )" class='mt-3 w-full py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700'>Add to Cart</button>
+          </div>
+        </article>
+        <!-- Product 3 -->
+        <article class='group bg-white border border-gray-200 rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow'>
+          <img src="https://images.unsplash.com/photo-1735048002878-da85b65b96b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODkyNDZ8MHwxfHNlYXJjaHwzfHxTbGltJTIwRml0JTIwQ2hpbm9zfGVufDB8MHx8fDE3NTY4MzUxOTl8MA&ixlib=rb-4.1.0&q=80&w=1080" alt='Slim Fit Chinos' class='w-full h-48 object-cover'>
+          <div class='p-4'>
+            <h3 class='font-semibold text-lg'>Slim Fit Chinos</h3>
+            <p class='text-gray-600'>₹2,299</p>
+            <button onclick="addToCart(103, 'Slim Fit Chinos', 2299, ' https://images.unsplash.com/photo-1583598231545-304b78a6f1d1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODkyNDZ8MHwxfHNlYXJjaHw0fHxTbGltJTIwRml0JTIwQ2hpbm9zfGVufDB8MHx8fDE3NTY4MzUxOTl8MA&ixlib=rb-4.1.0&q=80&w=1080 ' )" class='mt-3 w-full py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700'>Add to Cart</button>
+          </div>
+        </article>
+        <!-- Product 4 -->
+        <article class='group bg-white border border-gray-200 rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow'>
+          <img src="https://images.pexels.com/photos/2199486/pexels-photo-2199486.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt='Hoodie' class='w-full h-48 object-cover'>
+          <div class='p-4'>
+            <h3 class='font-semibold text-lg'>Cozy Hoodie</h3>
+            <p class='text-gray-600'>₹2,199</p>
+            <button onclick="addToCart(104, 'Cozy Hoodie', 2199, ' https://images.unsplash.com/photo-1692844399631-e7c6e3925662?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODkyNDZ8MHwxfHNlYXJjaHw5fHxIb29kaWV8ZW58MHwwfHx8MTc1NjgzNTIwMXww&ixlib=rb-4.1.0&q=80&w=1080 ' )" class='mt-3 w-full py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700'>Add to Cart</button>
+          </div>
+        </article>
+        <!-- Product 5 -->
+        <article class='group bg-white border border-gray-200 rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow'>
+          <img src="https://pixabay.com/get/g4b37922174bb022312c9945318c202d8fb3390420561d6726ebc241b6b2d3d60544955cfd07b1e69ee3be4bff66abebbe8ef764461d07b1646d9584c2cff134b_640.jpg" alt='Leather Belt' class='w-full h-48 object-cover'>
+          <div class='p-4'>
+            <h3 class='font-semibold text-lg'>Leather Belt</h3>
+            <p class='text-gray-600'>₹1,199</p>
+            <button onclick="addToCart(105, 'Leather Belt', 1199, ' https://images.unsplash.com/photo-1624222247344-550fb60583dc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODkyNDZ8MHwxfHNlYXJjaHw1fHxMZWF0aGVyJTIwQmVsdHxlbnwwfDB8fHwxNzU2ODM1MjAyfDA&ixlib=rb-4.1.0&q=80&w=1080 ' )" class='mt-3 w-full py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700'>Add to Cart</button>
+          </div>
+        </article>
+        <!-- Product 6 -->
+        <article class='group bg-white border border-gray-200 rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow'>
+          <img src="https://images.pexels.com/photos/10397766/pexels-photo-10397766.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt='White Sneakers' class='w-full h-48 object-cover'>
+          <div class='p-4'>
+            <h3 class='font-semibold text-lg'>White Sneakers</h3>
+            <p class='text-gray-600'>₹5,499</p>
+            <button onclick="addToCart(106, 'White Sneakers', 5499, ' https://images.unsplash.com/photo-1615109255391-b0dfdcd5b8d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODkyNDZ8MHwxfHNlYXJjaHwzfHxXaGl0ZSUyMFNuZWFrZXJzfGVufDB8MHx8fDE3NTY4MzUyMDR8MA&ixlib=rb-4.1.0&q=80&w=1080 ' )" class='mt-3 w-full py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700'>Add to Cart</button>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class='bg-gray-800 text-gray-200'>
+    <div class='max-w-7xl mx-auto px-4 py-12'>
+      <div class='grid grid-cols-1 md:grid-cols-3 gap-6'>
+        <div>
+          <strong>Urban Threads</strong>
+          <p class='mt-2 text-sm text-gray-400'>Hyderabad, India • © 2025 Urban Threads</p>
+        </div>
+        <div>
+          <h4 class='font-semibold mb-2'>Shop</h4>
+          <ul class='text-sm space-y-1'>
+            <li>New Arrivals</li>
+            <li>Best Sellers</li>
+            <li>Clearance</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class='font-semibold mb-2'>Support</h4>
+          <p class='text-sm text-gray-400'>Customer care: hello@urbanthreads.in</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Cart state across pages
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+
+    function addToCart(productId, name, price, image) {
+      const existingItem = cart.find(item => item.id === productId);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({ id: productId, name, price, image, quantity: 1 });
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartDisplay();
+      showCartNotification();
+    }
+
+    function updateCartDisplay() {
+      const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const headerCount = document.getElementById('cart-count-header');
+      if (headerCount) headerCount.textContent = cartCount;
+      const headerCount2 = document.getElementById('cart-count');
+      if (headerCount2) headerCount2.textContent = cartCount;
+    }
+
+    function showCartNotification() {
+      const notification = document.createElement('div');
+      notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg z-50 transform translate-x-full transition-transform duration-300';
+      notification.textContent = 'Item added to cart!';
+      document.body.appendChild(notification);
+      setTimeout(() => notification.classList.remove('translate-x-full'), 100);
+      setTimeout(() => {
+        notification.classList.add('translate-x-full');
+        setTimeout(() => document.body.removeChild(notification), 300);
+      }, 2000);
+    }
+
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      const isOpen = mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden', !isOpen);
+      const hamburgerIcon = document.getElementById('hamburger-icon');
+      const closeIcon = document.getElementById('close-icon');
+      if (isOpen) { hamburgerIcon.classList.add('hidden'); closeIcon.classList.remove('hidden'); }
+      else { hamburgerIcon.classList.remove('hidden'); closeIcon.classList.add('hidden'); }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCartDisplay();
+      const hamb = document.getElementById('hamburger');
+      if (hamb) hamb.addEventListener('click', toggleMobileMenu);
+    });
+  </script>
+</body>
+</html>
